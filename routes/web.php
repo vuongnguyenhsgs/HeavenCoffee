@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Process\LoginController@getLogin');
+Route::get('/', 'Process\LoginController@getLogin');
