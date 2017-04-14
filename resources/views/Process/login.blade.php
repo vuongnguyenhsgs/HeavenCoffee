@@ -14,8 +14,6 @@
         <link rel="stylesheet" href="css/main.css">
         <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
         <link rel="stylesheet" href="css/demo.css">
-        <!-- GOOGLE FONTS -->
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
         <!-- ICONS -->
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
         <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
@@ -31,14 +29,27 @@
                             <div class="header">
                                 <div class="logo text-center"><img src="img/logo-hc.jpg"></div>
                             </div>
+                            <div style="text-align: center" id="errLoginMessage">
+                                @if(isset($errMess))
+                                    <label id="lblLoginMessage" class="text-danger">{!!$errMess!!}</label>
+                                @else
+                                @endif
+                                <label id="lblLoginMessage" class="text-danger"></label>
+                            </div>
                             <form class="form-auth-small" method="POST" action="/login">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    <input class="form-control input-login" id="txtUsername" placeholder="Tên đăng nhập">
+                                    @if(isset($username))
+                                    <input class="form-control input-login" name="txtUsername" id="txtUsername" value="{!!$username!!}" >
+                                    @else
+                                    <input class="form-control input-login" name="txtUsername" id="txtUsername" value="" placeholder="Tên đăng nhập">
+                                    @endif
+                                    
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control input-login" id="txtPassword" placeholder="Mật khẩu">
+                                    <input type="password" class="form-control input-login" name="txtPassword" id="txtPassword" value="" placeholder="Mật khẩu">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
+                                <button type="submit" onclick="return checkLogin()" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
                             </form>
                         </div>
                     </div>
@@ -47,5 +58,15 @@
         </div>
         <!-- END WRAPPER -->
     </body>
-
+    <script type="text/javascript">
+        function checkLogin(){
+            if($('input#txtUsername').val().trim() === '' || $('input#txtPassword').val().trim() === ''){
+                $('label#lblLoginMessage').text('Vui lòng nhập đủ tên đăng nhập, mật khẩu');
+                $('div#errLoginMessage').show();
+                return false;
+            }else{
+                return true;
+            }
+        }
+    </script>
 </html>

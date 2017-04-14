@@ -23,7 +23,7 @@ html {
 
 body {
   background-color: #F3F5F8;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 15px;
   color: #676a6d; }
 
@@ -1770,4 +1770,14 @@ ul.activity-timeline > li {
 .input-login{
     height: 50px;
     font-size: 18px;    
+}
+.label-input{
+    padding-top: 5px;
+}
+
+table thead td{
+    text-align: center;
+}
+.row-input{
+    padding: 5px 0px 5px 0px;
 }

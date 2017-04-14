@@ -12,4 +12,10 @@
 */
 
 Route::get('/', 'Process\LoginController@getLogin');
-Route::get('/', 'Process\LoginController@getLogin');
+Route::get('/login', 'Process\LoginController@getLogin');
+Route::post('/login', 'Process\LoginController@postLogin');
+
+Route::get('/Admin/drinks/all','Process\DrinkController@getAll');
+Route::get('/Admin/drinks/add-new','Process\DrinkController@getAddingNewDrink');
+Route::post('/Admin/drinks/is-existed','Process\DrinkController@isExistedDrink');
+Route::post('/Admin/drinks/add','Process\DrinkController@postAddingNewDrink');
